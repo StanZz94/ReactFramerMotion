@@ -7,9 +7,14 @@ export default function Modal({ title, children, onClose }) {
       <div className="backdrop" onClick={onClose} />
       <motion.dialog 
       open 
-      initial={{opacity: 0, y: 30}} 
-      animate={{opacity: 1, y: 0}} 
-      exit={{opacity: 0, y: -30}} 
+      variants={{
+        hidden: {opacity: 0, y: 30},
+        visible: {opacity: 1, y: 0},
+        hiddenOut: {opacity: 0, y: -30},
+      }}
+      initial="hidden" 
+      animate="visible" 
+      exit="hiddenOut" 
       className="modal">
         <h2>{title}</h2>
         {children}
